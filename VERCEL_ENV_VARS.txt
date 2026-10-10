@@ -1,0 +1,53 @@
+# Copy these environment variables to Vercel
+# Vercel Dashboard → Your Project → Settings → Environment Variables
+
+# ============================================
+# SUPABASE (REQUIRED)
+# ============================================
+# Get these from: https://supabase.com/dashboard/project/YOUR_PROJECT/settings/api
+
+SUPABASE_URL
+<your-supabase-project-url>
+
+SUPABASE_SERVICE_ROLE_KEY
+<your-supabase-service-role-key>
+
+# ============================================
+# OPENAI (REQUIRED for AI extraction)
+# ============================================
+# Get from: https://platform.openai.com/api-keys
+
+OPENAI_API_KEY
+<your-openai-api-key>
+
+OPENAI_MODEL
+gpt-4o
+
+# ============================================
+# SECURITY SECRETS (GENERATE NEW!)
+# ============================================
+# IMPORTANT: Generate NEW random secrets for production
+# Do NOT use the same ones from .env.local
+
+AADHAAR_PEPPER
+<generate-new-64-character-random-hex>
+
+SESSION_SECRET
+<generate-new-64-character-random-hex>
+
+# ============================================
+# APP URL (Update after first deployment)
+# ============================================
+# After first deploy, Vercel will give you a URL
+# Come back and update this variable
+
+NEXT_PUBLIC_APP_URL
+https://your-app-name.vercel.app
+
+# ============================================
+# NOTES:
+# ============================================
+# 1. DO NOT add NODE_TLS_REJECT_UNAUTHORIZED in production
+# 2. Make sure all values are correct before deploying
+# 3. After deployment, update NEXT_PUBLIC_APP_URL with your actual Vercel URL
+# 4. Generate new secrets using the commands below

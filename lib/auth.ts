@@ -1,6 +1,6 @@
 import { createHmac } from 'crypto'
 import bcrypt from 'bcryptjs'
-import { SignJWT, jwtVerify } from 'jose'
+import { SignJWT, jwtVerify, type JWTPayload } from 'jose'
 import { env } from './env'
 
 // Aadhaar ID utilities
@@ -42,7 +42,7 @@ export function validatePassword(password: string): { valid: boolean; error?: st
 }
 
 // Session JWT utilities
-export interface SessionPayload {
+export interface SessionPayload extends JWTPayload {
     role: 'patient' | 'doctor'
     patientId: string
     passwordChangedAt?: string
@@ -51,7 +51,7 @@ export interface SessionPayload {
 const SECRET_KEY = new TextEncoder().encode(env.SESSION_SECRET)
 
 export async function createSession(payload: SessionPayload, expiresIn: string = '8h'): Promise<string> {
-    const jwt = await new SignJWT(payload)
+    const jwt = await new SignJWT({ ...payload })
         .setProtectedHeader({ alg: 'HS256' })
         .setIssuedAt()
         .setExpirationTime(expiresIn)
@@ -63,7 +63,11 @@ export async function createSession(payload: SessionPayload, expiresIn: string =
 export async function verifySession(token: string): Promise<SessionPayload | null> {
     try {
         const { payload } = await jwtVerify(token, SECRET_KEY)
-        return payload as SessionPayload
+        return {
+            role: payload.role as 'patient' | 'doctor',
+            patientId: payload.patientId as string,
+            passwordChangedAt: payload.passwordChangedAt as string | undefined,
+        }
     } catch (error) {
         return null
     }

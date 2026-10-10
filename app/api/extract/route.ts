@@ -44,10 +44,10 @@ export async function POST(request: NextRequest) {
                 .insert({
                     patient_id: session.patientId,
                     storage_path: storagePath,
-                    document_type: extraction.document_type || 'other',
-                    provider_name: extraction.provider_name,
-                    document_date: extraction.document_date,
-                    extraction_json: extraction,
+                    document_type: extraction?.document_type || 'other',
+                    provider_name: extraction?.provider_name || 'Unknown',
+                    document_date: extraction?.document_date || new Date().toISOString().split('T')[0],
+                    extraction_json: extraction || {},
                     confirmed_at: null, // Not confirmed yet
                 })
                 .select()
@@ -273,10 +273,10 @@ IMPORTANT:
                 .insert({
                     patient_id: session.patientId,
                     storage_path: storagePath,
-                    document_type: extraction.document_type || 'other',
-                    provider_name: extraction.provider_name,
-                    document_date: extraction.document_date,
-                    extraction_json: extraction,
+                    document_type: extraction?.document_type || 'other',
+                    provider_name: extraction?.provider_name || 'Unknown',
+                    document_date: extraction?.document_date || new Date().toISOString().split('T')[0],
+                    extraction_json: extraction || {},
                     confirmed_at: null,
                 })
                 .select()
@@ -328,10 +328,10 @@ IMPORTANT:
                 .insert({
                     patient_id: session.patientId,
                     storage_path: storagePath,
-                    document_type: extraction.document_type || 'other',
-                    provider_name: extraction.provider_name,
-                    document_date: extraction.document_date,
-                    extraction_json: extraction,
+                    document_type: extraction?.document_type || 'other',
+                    provider_name: extraction?.provider_name || 'Unknown',
+                    document_date: extraction?.document_date || new Date().toISOString().split('T')[0],
+                    extraction_json: extraction || {},
                     confirmed_at: null,
                 })
                 .select()
@@ -411,10 +411,10 @@ IMPORTANT:
                 .insert({
                     patient_id: session.patientId,
                     storage_path: 'fallback/error.pdf',
-                    document_type: extraction.document_type || 'other',
-                    provider_name: extraction.provider_name,
-                    document_date: extraction.document_date,
-                    extraction_json: extraction,
+                    document_type: extraction?.document_type || 'other',
+                    provider_name: extraction?.provider_name || 'Unknown',
+                    document_date: extraction?.document_date || new Date().toISOString().split('T')[0],
+                    extraction_json: extraction || {},
                     confirmed_at: null,
                 })
                 .select()

@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         const validation = loginSchema.safeParse(body)
 
         if (!validation.success) {
-            const firstError = validation.error.errors?.[0]?.message || 'Validation failed';
+            const firstError = validation.error.issues?.[0]?.message || 'Validation failed';
             return NextResponse.json(
                 { error: firstError },
                 { status: 400 }

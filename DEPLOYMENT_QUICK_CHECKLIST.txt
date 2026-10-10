@@ -1,0 +1,94 @@
+╔══════════════════════════════════════════════════════════════╗
+║  CARETRAIL DEPLOYMENT CHECKLIST - Follow This Step by Step  ║
+╚══════════════════════════════════════════════════════════════╝
+
+PRE-DEPLOYMENT ✅
+─────────────────────────────────────────────────────────────
+✅ Code pushed to GitHub
+☐ Supabase project created
+☐ Database schema deployed (run supabase/schema.sql)
+☐ Storage bucket "documents" created (private)
+☐ OpenAI API key ready ($5+ credit recommended)
+
+STEP 1: IMPORT TO VERCEL
+─────────────────────────────────────────────────────────────
+☐ Go to: https://vercel.com/new
+☐ Sign in with GitHub
+☐ Import "caretrail" repository
+☐ Leave settings as default (Next.js)
+☐ DO NOT CLICK DEPLOY YET!
+
+STEP 2: ADD ENVIRONMENT VARIABLES
+─────────────────────────────────────────────────────────────
+Add these 7 variables in Vercel (check Production+Preview+Development):
+
+☐ SUPABASE_URL = https://xxxxx.supabase.co
+☐ SUPABASE_SERVICE_ROLE_KEY = eyJhbG...
+☐ OPENAI_API_KEY = sk-...
+☐ OPENAI_MODEL = gpt-4o
+☐ AADHAAR_PEPPER = c6a901ed87b5234fc6a901ed87b5234fc6a901ed87b5234fc6a901ed87b5234f
+☐ SESSION_SECRET = bfa8073d541269ecbfa8073d541269ecbfa8073d541269ecbfa8073d541269ec
+☐ NEXT_PUBLIC_APP_URL = https://caretrail.vercel.app (temporary)
+
+WHERE TO FIND VALUES:
+→ Supabase: https://supabase.com/dashboard → Settings → API
+→ OpenAI: https://platform.openai.com/api-keys
+
+STEP 3: DEPLOY!
+─────────────────────────────────────────────────────────────
+☐ Click "Deploy" button
+☐ Wait 3-4 minutes for build
+☐ Copy your deployment URL
+
+STEP 4: UPDATE APP URL
+─────────────────────────────────────────────────────────────
+☐ Go to: Vercel → Settings → Environment Variables
+☐ Edit NEXT_PUBLIC_APP_URL
+☐ Update to your actual Vercel URL
+☐ Redeploy
+
+STEP 5: TEST DEPLOYMENT
+─────────────────────────────────────────────────────────────
+☐ Visit your Vercel URL
+☐ Register test account
+☐ Login successfully
+☐ Upload medical document (use image: JPG/PNG)
+☐ AI extraction works
+☐ Confirm data saves
+☐ Timeline shows record
+☐ Summary shows data
+☐ No console errors
+
+SUCCESS CRITERIA
+─────────────────────────────────────────────────────────────
+✓ Homepage loads
+✓ Registration works
+✓ Login works
+✓ Upload works
+✓ AI extraction works
+✓ Timeline displays data
+✓ Summary displays data
+✓ No 500 errors
+
+YOUR DEPLOYMENT URL
+─────────────────────────────────────────────────────────────
+https://_____________________________.vercel.app
+
+ESTIMATED TIME: 15-20 minutes total
+
+TROUBLESHOOTING
+─────────────────────────────────────────────────────────────
+Build Fails → Check: npm run build (test locally)
+No AI Extraction → Check: OpenAI API key & credits
+Database Error → Check: Schema deployed & credentials correct
+500 Error → Check: Vercel Function Logs
+
+HELP FILES
+─────────────────────────────────────────────────────────────
+→ Full Guide: DEPLOY_NOW.md
+→ Secrets: PRODUCTION_SECRETS.txt
+→ Env Vars: VERCEL_ENV_VARS.txt
+
+═══════════════════════════════════════════════════════════════
+            🚀 Ready to Deploy? Let's Go! 🚀
+═══════════════════════════════════════════════════════════════

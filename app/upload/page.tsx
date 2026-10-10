@@ -98,10 +98,7 @@ export default function UploadPage() {
         e.preventDefault();
         const droppedFile = e.dataTransfer.files?.[0];
         if (droppedFile) {
-            const event = {
-                target: { files: [droppedFile] },
-            } as React.ChangeEvent<HTMLInputElement>;
-            handleFileChange(event);
+            setFile(droppedFile);
         }
     };
 
